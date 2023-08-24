@@ -1,3 +1,4 @@
+require_relative '../lib/board.rb'
 
 RSpec.describe Board do
   before { @board = described_class.new }
