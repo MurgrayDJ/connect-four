@@ -7,4 +7,9 @@ class Board
     @board = board
   end
 
+  def full?
+    if @board.all? {|spot| spot == 0}
+      return false
+    end
+  end
 end
