@@ -8,7 +8,6 @@ class Board
   end
 
   def full?
-    return false if @board.all? {|spot| spot == 0}
-    return true if @board.all? {|spot| spot == 1}
+    @board.any? {|spot| spot == 0} ? false : true
   end
 end
