@@ -8,18 +8,22 @@ class Board
   end
 
   def print_board
-    print "      " + ("_" * 27)
-    puts
+    top_line = "      " + ("_" * 27) + "\n"
+    bottom_line = "     " + (" \u0305" * 27) + "\n"
+    
+    print top_line 
+    print_rows
+    print bottom_line
+  end
+
+  def print_rows
     @board.row_vectors.each do |row|
       print "     "
       row.each do |spot|
         print "| #{spot} "
       end
-      print "|"
-      puts
+      print "| \n"
     end
-    print "     " + (" \u0305" * 27)
-    puts
   end
 
   def full?
