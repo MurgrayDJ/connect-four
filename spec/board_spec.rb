@@ -22,6 +22,13 @@ RSpec.describe Board do
         @board_class.print_board
       end
     end
+
+    context 'board is full' do
+      it 'should print a full board' do
+        @board_class.board.map! {|spot| spot = "\u25CF"}
+        @board_class.print_board
+      end
+    end
   end
 
   describe '#full?' do
