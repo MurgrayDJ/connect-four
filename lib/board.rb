@@ -4,6 +4,8 @@ class Board
   attr_accessor :board
   NUM_ROWS = 6
   NUM_COLUMNS = 7
+  DOT = "\u25CF"
+  CIRCLE = "\u25CB"
 
   def initialize(board = Matrix.build(NUM_ROWS, NUM_COLUMNS) {" "})
     @board = board
