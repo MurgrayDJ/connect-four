@@ -44,6 +44,7 @@ class Board
 
   def win?(game_symbol, row_num, column_num)
     return true if row_win?(game_symbol, row_num)
+    return true if column_win?(game_symbol, column_num)
     false
   end
 
@@ -51,10 +52,27 @@ class Board
     counter = 0
     row = @board.row(row_num)
     row.each do |slot|
-      if counter == 4
-        return true
-      elsif slot == game_symbol
+      if slot == game_symbol
         counter += 1
+        if counter == 4
+          return true
+        end
+      else
+        counter = 0
+      end
+    end
+    false
+  end
+
+  def column_win?(game_symbol, column_num)
+    counter = 0
+    column = @board.column(column_num)
+    column.each do |slot|
+      if slot == game_symbol
+        counter += 1
+        if counter == 4
+          return true
+        end
       else
         counter = 0
       end
