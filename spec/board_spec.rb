@@ -57,10 +57,10 @@ RSpec.describe Board do
     end
   end
 
-  describe '#insert' do
+  describe '#insert?' do
     context 'first disc is inserted' do
       it 'should have a disc in the first position' do
-        @board_class.insert("\u25CF", 0)
+        @board_class.insert?("\u25CF", 0)
         @board_class.print_board
         expect(@board_class.board[5,0]).to eq("\u25CF")
       end
@@ -68,10 +68,20 @@ RSpec.describe Board do
 
     context 'two discs are inserted in one column' do
       it 'should have the two discs in one column' do
-        @board_class.insert("\u25CF", 2)
-        @board_class.insert("\u25CB", 2)
+        @board_class.insert?("\u25CF", 2)
+        @board_class.insert?("\u25CB", 2)
         @board_class.print_board
         expect(@board_class.board[4,2]).to eq("\u25CB")
+      end
+    end
+
+    context 'tries to add disc into full column' do
+      it 'should return false' do 
+        5.downto(0) do 
+          @board_class.insert?("\u25CF", 4)
+        end
+        @board_class.print_board
+        expect(@board_class.insert?("\u25CF", 4)).to be(false)
       end
     end
   end
