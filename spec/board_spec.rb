@@ -69,8 +69,8 @@ RSpec.describe Board do
 
       end
 
-      it 'should return [5,0]' do
-        expect(@board_class.insert(DOT, 0)).to eq([5,0])
+      it 'should return [DOT,5,0]' do
+        expect(@board_class.insert(DOT, 0)).to eq([DOT,5,0])
       end
     end
 
@@ -82,9 +82,9 @@ RSpec.describe Board do
         expect(@board_class.board[4,2]).to eq(CIRCLE)
       end
 
-      it 'should return return [4,2]' do
+      it 'should return return [CIRCLE,4,2]' do
         @board_class.insert(DOT, 2)
-        expect(@board_class.insert(CIRCLE, 2)).to eq([4,2])
+        expect(@board_class.insert(CIRCLE, 2)).to eq([CIRCLE, 4,2])
       end
     end
 
@@ -110,11 +110,12 @@ RSpec.describe Board do
   describe '#win?' do
     context 'four in a row' do
       it 'should return true' do
-        (0...4).each do |column| 
-          @board_class.insert(DOT, column)
-        end
+        @board_class.board[5,0] =  DOT
+        @board_class.board[5,1] =  DOT
+        @board_class.board[5,2] =  DOT
+        result = @board_class.insert(DOT, 3)
         @board_class.print_board
-        expect(@board_class.win?).to be(true)
+        expect(@board_class.win?(result[0], result[1], result[2])).to be(true)
       end
     end
   end

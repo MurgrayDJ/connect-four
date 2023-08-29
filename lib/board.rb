@@ -36,11 +36,31 @@ class Board
     (NUM_ROWS-1).downto(0) do |row_num|
       if @board[row_num, column_num] == " "
         @board[row_num, column_num] = game_symbol
-        return [row_num, column_num]
+        return [game_symbol, row_num, column_num]
       end
     end
     return nil
   end 
+
+  def win?(game_symbol, row_num, column_num)
+    result = nil
+    return true if row_win?(game_symbol, row_num)
+  end
+
+  def row_win?(game_symbol, row_num)
+    counter = 0
+    row = @board.row(row_num)
+    row.each do |slot|
+      if counter == 4
+        return true
+      elsif slot == game_symbol
+        counter += 1
+      else
+        counter = 0
+      end
+    end
+    false
+  end
 end
 
 # testBoard = Board.new
