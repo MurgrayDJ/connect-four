@@ -32,14 +32,14 @@ class Board
     @board.any? {|spot| spot == " "} ? false : true
   end
 
-  def insert?(game_symbol, column_num)
+  def insert(game_symbol, column_num)
     (NUM_ROWS-1).downto(0) do |row_num|
       if @board[row_num, column_num] == " "
         @board[row_num, column_num] = game_symbol
-        return true
+        return [row_num, column_num]
       end
     end
-    return false
+    return nil
   end 
 end
 

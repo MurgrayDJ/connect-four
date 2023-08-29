@@ -6,6 +6,7 @@ RSpec.describe Board do
   DOT = "\u25CF"
   CIRCLE = "\u25CB"
 
+  #PRINT BOARD
   describe '#print_board' do
     context 'board is empty' do
       it 'should print an empty board' do
@@ -33,6 +34,7 @@ RSpec.describe Board do
     end
   end
 
+  #FULL
   describe '#full?' do
     context 'board is empty' do
       it 'should return false' do
@@ -57,46 +59,62 @@ RSpec.describe Board do
     end
   end
 
-  describe '#insert?' do
+  #INSERT
+  describe '#insert' do
     context 'first disc is inserted' do
       it 'should have a disc in the first position' do
-        @board_class.insert?(DOT, 0)
+        @board_class.insert(DOT, 0)
         @board_class.print_board
         expect(@board_class.board[5,0]).to eq(DOT)
 
       end
 
-      it 'should return true' do
-        expect(@board_class.insert?(DOT, 0)).to be true
+      it 'should return [5,0]' do
+        expect(@board_class.insert(DOT, 0)).to eq([5,0])
       end
     end
 
     context 'two discs are inserted in one column' do
       it 'should have the two discs in one column' do
-        @board_class.insert?(DOT, 2)
-        @board_class.insert?(CIRCLE, 2)
+        @board_class.insert(DOT, 2)
+        @board_class.insert(CIRCLE, 2)
         @board_class.print_board
         expect(@board_class.board[4,2]).to eq(CIRCLE)
       end
 
-      it 'should return true' do
-        expect(@board_class.insert?(DOT, 0)).to be true
+      it 'should return return [4,2]' do
+        @board_class.insert(DOT, 2)
+        expect(@board_class.insert(CIRCLE, 2)).to eq([4,2])
       end
     end
 
     context 'tries to add disc into full column' do
       it 'should have a full column' do
         5.downto(0) do 
-          @board_class.insert?(DOT, 4)
-        end
-        expect(@board_class.insert?(DOT, 4)).to be(false)
-      end
-      it 'should return false' do 
-        5.downto(0) do 
-          @board_class.insert?(DOT, 4)
+          @board_class.insert(DOT, 4)
         end
         @board_class.print_board
-        expect(@board_class.insert?(DOT, 4)).to be(false)
+        column4 = @board_class.board.column(4).to_a
+        expect(column4.uniq.length).to eq(1)
+      end
+      
+      it 'should return false' do 
+        5.downto(0) do 
+          @board_class.insert(DOT, 4)
+        end
+        expect(@board_class.insert(DOT, 4)).to be(nil)
+      end
+    end
+  end
+
+  describe '#win?' do
+    context 'four in a row' do
+      it 'should return true' do
+        (0...4).each do |column| 
+          @board_class.insert(DOT, column)
+        end
+        @board_class.print_board
+        expect(@board_class.win?).to be(true)
       end
     end
   end
