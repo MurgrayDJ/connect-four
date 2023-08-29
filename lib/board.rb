@@ -43,8 +43,8 @@ class Board
   end 
 
   def win?(game_symbol, row_num, column_num)
-    result = nil
     return true if row_win?(game_symbol, row_num)
+    false
   end
 
   def row_win?(game_symbol, row_num)
