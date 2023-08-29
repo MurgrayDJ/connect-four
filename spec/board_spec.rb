@@ -63,6 +63,11 @@ RSpec.describe Board do
         @board_class.insert?("\u25CF", 0)
         @board_class.print_board
         expect(@board_class.board[5,0]).to eq("\u25CF")
+
+      end
+
+      it 'should return true' do
+        expect(@board_class.insert?("\u25CF", 0)).to be true
       end
     end
 
@@ -73,9 +78,19 @@ RSpec.describe Board do
         @board_class.print_board
         expect(@board_class.board[4,2]).to eq("\u25CB")
       end
+
+      it 'should return true' do
+        expect(@board_class.insert?("\u25CF", 0)).to be true
+      end
     end
 
     context 'tries to add disc into full column' do
+      it 'should have a full column' do
+        5.downto(0) do 
+          @board_class.insert?("\u25CF", 4)
+        end
+        expect(@board_class.insert?("\u25CF", 4)).to be(false)
+      end
       it 'should return false' do 
         5.downto(0) do 
           @board_class.insert?("\u25CF", 4)
