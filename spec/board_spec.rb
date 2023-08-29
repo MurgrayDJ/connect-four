@@ -65,5 +65,14 @@ RSpec.describe Board do
         expect(@board_class.board[5,0]).to eq("\u25CF")
       end
     end
+
+    context 'two discs are inserted in one column' do
+      it 'should have the two discs in one column' do
+        @board_class.insert("\u25CF", 2)
+        @board_class.insert("\u25CB", 2)
+        @board_class.print_board
+        expect(@board_class.board[4,2]).to eq("\u25CB")
+      end
+    end
   end
 end

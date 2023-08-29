@@ -35,7 +35,7 @@ class Board
   def insert(game_symbol, column_num)
     (NUM_ROWS-1).downto(0) do |row_num|
       if @board[row_num, column_num] == " "
-        @board[row_num, column_num] = "\u25CF"
+        @board[row_num, column_num] = game_symbol
         return
       end
     end
