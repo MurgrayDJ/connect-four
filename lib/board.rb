@@ -23,9 +23,7 @@ class Board
   def print_rows
     @board.row_vectors.each do |row|
       print "     "
-      row.each do |spot|
-        print "| #{spot} "
-      end
+      row.each {|spot| print "| #{spot} "}
       print "| \n"
     end
   end
