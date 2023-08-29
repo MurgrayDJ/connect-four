@@ -2,8 +2,10 @@ require 'matrix'
 
 class Board
   attr_accessor :board
+  NUM_ROWS = 6
+  NUM_COLUMNS = 7
 
-  def initialize(board = Matrix.build(6,7) {" "})
+  def initialize(board = Matrix.build(NUM_ROWS, NUM_COLUMNS) {" "})
     @board = board
   end
 
@@ -29,6 +31,15 @@ class Board
   def full?
     @board.any? {|spot| spot == " "} ? false : true
   end
+
+  def insert(game_symbol, column_num)
+    (NUM_ROWS-1).downto(0) do |row_num|
+      if @board[row_num, column_num] == " "
+        @board[row_num, column_num] = "\u25CF"
+        return
+      end
+    end
+  end 
 end
 
 # testBoard = Board.new

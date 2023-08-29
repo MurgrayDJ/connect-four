@@ -4,6 +4,8 @@ require 'matrix'
 RSpec.describe Board do
   before { @board_class = described_class.new }
 
+
+
   describe '#print_board' do
     context 'board is empty' do
       it 'should print an empty board' do
@@ -51,6 +53,16 @@ RSpec.describe Board do
       it 'should return true' do
         @board_class.board.map! {|spot| spot = "\u25CF"}
         expect(@board_class.full?).to be(true)
+      end
+    end
+  end
+
+  describe '#insert' do
+    context 'first disc is inserted' do
+      it 'should have a disc in the first position' do
+        @board_class.insert("\u25CF", 0)
+        @board_class.print_board
+        expect(@board_class.board[5,0]).to eq("\u25CF")
       end
     end
   end
