@@ -6,6 +6,14 @@ class Board
   NUM_COLUMNS = 7
   DOT = "\u25CF"
   CIRCLE = "\u25CB"
+  DOWN_DIAGONALS = Hash[
+    [2,0] => [[2,0], [3,1], [4,2], [5,3]],
+    [1,0] => [[1,0], [2,1], [3,2], [4,3], [5,4]],
+    [0,0] => [[0,0], [1,1], [2,2], [3,3], [4,4], [5,5]],
+    [0,1] => [[0,1], [1,2], [2,3], [3,4], [4,5], [5,6]],
+    [0,2] => [[0,2], [1,3], [2,4], [3,5], [4,6]],
+    [0,3] => [[0,3], [1,4], [2,5], [3,6]]
+  ]
 
   def initialize(board = Matrix.build(NUM_ROWS, NUM_COLUMNS) {" "})
     @board = board
@@ -24,8 +32,8 @@ class Board
   end
 
   def print_rows
-    @board.row_vectors.each do |row|
-      print "     "
+    @board.row_vectors.each_with_index do |row, row_num|
+      print "    #{row_num}"
       row.each {|slot| print "| #{slot} "}
       print "| \n"
     end
@@ -63,25 +71,20 @@ class Board
   end
 
   def diagonal_win?(game_symbol, row_num, column_num)
-    down_diagonals = Hash[
-      [2,0] => [[2,0], [3,1], [4,2], [5,3]],
-      [1,0] => [[1,0], [2,1], [3,2], [4,3], [5,4]],
-      [0,0] => [[0,0], [1,1], [2,2], [3,3], [4,4], [5,5]],
-      [0,1] => [[0,1], [1,2], [2,3], [3,4], [4,5], [5,6]],
-      [0,2] => [[0,2], [1,3], [2,4], [3,5], [4,6]],
-      [0,3] => [[0,3], [1,4], [2,5], [3,6]]
-    ]
-
-    down_diagonals.each do |first_xy, diagonal|
+    result = false
+    DOWN_DIAGONALS.each do |first_xy, diagonal|
       if diagonal.include?([row_num, column_num])
-        four_discs?(diagonal, game_symbol)
+        diagonal.map! {|slot| slot = @board[slot[0], slot[1]]}
+        result = four_discs?(diagonal, game_symbol) 
       end
     end
+    result
   end
 
   def four_discs?(xy_list, game_symbol)
     counter = 0
     xy_list.each do |slot|
+      p slot
       if slot == game_symbol
         counter += 1
         if counter == 4

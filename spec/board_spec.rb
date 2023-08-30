@@ -179,5 +179,19 @@ RSpec.describe Board do
         expect(@board_class.win?(result[0], result[1], result[2])).to be(true)
       end
     end
+
+    #Diagonal wins
+    context '4 in a diagonal' do
+      it 'should return true' do
+        @board_class.board[0,0] =  CIRCLE
+        @board_class.board[1,1] =  CIRCLE
+        @board_class.board[2,2] =  CIRCLE
+        @board_class.board[4,3] =  CIRCLE
+        @board_class.board[5,3] =  CIRCLE
+        result = @board_class.insert(CIRCLE, 3)
+        @board_class.print_board
+        expect(@board_class.win?(result[0], result[1], result[2])).to be(true)
+      end
+    end
   end
 end
