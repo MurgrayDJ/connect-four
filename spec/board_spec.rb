@@ -204,5 +204,17 @@ RSpec.describe Board do
         expect(@board_class.win?(result[0], result[1], result[2])).to be(true)
       end
     end
+
+    context '4 on end of diagonal' do
+      it 'should return true' do
+        @board_class.board[1,3] =  DOT
+        @board_class.board[2,4] =  DOT
+        @board_class.board[3,5] =  DOT
+        @board_class.board[5,6] =  CIRCLE
+        result = @board_class.insert(DOT, 6)
+        @board_class.print_board
+        expect(@board_class.win?(result[0], result[1], result[2])).to be(true)
+      end
+    end
   end
 end
