@@ -48,29 +48,40 @@ class Board
   def win?(game_symbol, row_num, column_num)
     return true if row_win?(game_symbol, row_num)
     return true if column_win?(game_symbol, column_num)
+    return true if diagonal_win?(game_symbol, row_num, column_num)
     false
   end
 
   def row_win?(game_symbol, row_num)
-    counter = 0
     row = @board.row(row_num)
-    row.each do |slot|
-      if slot == game_symbol
-        counter += 1
-        if counter == 4
-          return true
-        end
-      else
-        counter = 0
-      end
-    end
-    false
+    four_discs?(row, game_symbol)
   end
 
   def column_win?(game_symbol, column_num)
-    counter = 0
     column = @board.column(column_num)
-    column.each do |slot|
+    four_discs?(column, game_symbol)
+  end
+
+  def diagonal_win?(game_symbol, row_num, column_num)
+    down_diagonals = Hash[
+      [2,0] => [[2,0], [3,1], [4,2], [5,3]],
+      [1,0] => [[1,0], [2,1], [3,2], [4,3], [5,4]],
+      [0,0] => [[0,0], [1,1], [2,2], [3,3], [4,4], [5,5]],
+      [0,1] => [[0,1], [1,2], [2,3], [3,4], [4,5], [5,6]],
+      [0,2] => [[0,2], [1,3], [2,4], [3,5], [4,6]],
+      [0,3] => [[0,3], [1,4], [2,5], [3,6]]
+    ]
+
+    down_diagonals.each do |first_xy, diagonal|
+      if diagonal.include?([row_num, column_num])
+        four_discs?(diagonal, game_symbol)
+      end
+    end
+  end
+
+  def four_discs?(xy_list, game_symbol)
+    counter = 0
+    xy_list.each do |slot|
       if slot == game_symbol
         counter += 1
         if counter == 4
