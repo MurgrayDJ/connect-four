@@ -181,7 +181,8 @@ RSpec.describe Board do
     end
 
     #Diagonal wins
-    context '4 on main diagonal' do
+    ##Down Diagonal
+    context '4 on main diagonal down' do
       it 'should return true' do
         @board_class.board[0,0] =  CIRCLE
         @board_class.board[1,1] =  CIRCLE
@@ -194,7 +195,7 @@ RSpec.describe Board do
       end
     end
 
-    context '4 on other diagonal' do
+    context '4 on other diagonal down' do
       it 'should return true' do
         @board_class.board[2,0] =  CIRCLE
         @board_class.board[3,1] =  CIRCLE
@@ -205,7 +206,7 @@ RSpec.describe Board do
       end
     end
 
-    context '4 on end of diagonal' do
+    context '4 on end of diagonal down' do
       it 'should return true' do
         @board_class.board[1,3] =  DOT
         @board_class.board[2,4] =  DOT
@@ -217,7 +218,7 @@ RSpec.describe Board do
       end
     end
 
-    context '2 in diagonal, a gap, then 2 more' do
+    context '2 in diagonal down, a gap, then 2 more' do
       it 'should return false' do
         @board_class.board[0,2] =  CIRCLE
         @board_class.board[1,3] =  CIRCLE
@@ -230,10 +231,69 @@ RSpec.describe Board do
       end
     end
 
-    context 'only 3 in diagonal' do
+    context 'only 3 in diagonal down' do
       it 'should return false' do
         @board_class.board[3,1] =  CIRCLE
         @board_class.board[4,2] =  CIRCLE
+        result = @board_class.insert(CIRCLE, 3)
+        @board_class.print_board
+        expect(@board_class.win?(result[0], result[1], result[2])).to be(false)
+      end
+    end
+
+    ##Up Diagonals
+    context '4 on main diagonal up' do
+      it 'should return true' do
+        @board_class.board[2,3] =  DOT
+        @board_class.board[3,2] =  DOT
+        @board_class.board[4,1] =  DOT
+        result = @board_class.insert(DOT, 0)
+        @board_class.print_board
+        expect(@board_class.win?(result[0], result[1], result[2])).to be(true)
+      end
+    end
+
+    context '4 on other diagonal up' do
+      it 'should return true' do
+        @board_class.board[2,5] =  CIRCLE
+        @board_class.board[3,4] =  CIRCLE
+        @board_class.board[4,3] =  CIRCLE
+        result = @board_class.insert(CIRCLE, 2)
+        @board_class.print_board
+        expect(@board_class.win?(result[0], result[1], result[2])).to be(true)
+      end
+    end
+
+    context '4 on end of diagonal up' do
+      it 'should return true' do
+        @board_class.board[0,4] =  DOT
+        @board_class.board[1,3] =  DOT
+        @board_class.board[2,2] =  DOT
+        @board_class.board[5,1] =  CIRCLE
+        @board_class.board[4,1] =  CIRCLE
+        result = @board_class.insert(DOT, 1)
+        @board_class.print_board
+        expect(@board_class.win?(result[0], result[1], result[2])).to be(true)
+      end
+    end
+
+    context '2 in diagonal up, a gap, then 2 more' do
+      it 'should return false' do
+        @board_class.board[0,5] =  CIRCLE
+        @board_class.board[1,4] =  CIRCLE
+        @board_class.board[2,3] =  DOT
+        @board_class.board[3,2] =  CIRCLE
+        @board_class.board[5,1] =  DOT
+        result = @board_class.insert(CIRCLE, 1)
+        @board_class.print_board
+        expect(@board_class.win?(result[0], result[1], result[2])).to be(false)
+      end
+    end
+
+    context 'only 3 in diagonal up' do
+      it 'should return false' do
+        @board_class.board[3,5] =  CIRCLE
+        @board_class.board[4,4] =  CIRCLE
         result = @board_class.insert(CIRCLE, 3)
         @board_class.print_board
         expect(@board_class.win?(result[0], result[1], result[2])).to be(false)
