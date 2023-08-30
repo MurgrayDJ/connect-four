@@ -216,5 +216,18 @@ RSpec.describe Board do
         expect(@board_class.win?(result[0], result[1], result[2])).to be(true)
       end
     end
+
+    context '2 in diagonal, a gap, then 2 more' do
+      it 'should return false' do
+        @board_class.board[0,2] =  CIRCLE
+        @board_class.board[1,3] =  CIRCLE
+        @board_class.board[2,4] =  DOT
+        @board_class.board[3,5] =  CIRCLE
+        @board_class.board[5,6] =  DOT
+        result = @board_class.insert(CIRCLE, 6)
+        @board_class.print_board
+        expect(@board_class.win?(result[0], result[1], result[2])).to be(false)
+      end
+    end
   end
 end
