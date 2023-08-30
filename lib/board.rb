@@ -23,13 +23,13 @@ class Board
   def print_rows
     @board.row_vectors.each do |row|
       print "     "
-      row.each {|spot| print "| #{spot} "}
+      row.each {|slot| print "| #{slot} "}
       print "| \n"
     end
   end
 
   def full?
-    @board.any? {|spot| spot == " "} ? false : true
+    @board.any? {|slot| slot == " "} ? false : true
   end
 
   def insert(game_symbol, column_num)

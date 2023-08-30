@@ -108,7 +108,8 @@ RSpec.describe Board do
   end
 
   describe '#win?' do
-    context 'four in a row' do
+    #Row tests
+    context '4 in a row' do
       it 'should return true' do
         @board_class.board[5,0] =  DOT
         @board_class.board[5,1] =  DOT
@@ -142,7 +143,8 @@ RSpec.describe Board do
       end
     end
 
-    context 'four in a column' do
+    #Column tests
+    context '4 in a column' do
       it 'should return true' do
         @board_class.board[5,3] =  DOT
         @board_class.board[4,3] =  DOT
@@ -150,6 +152,18 @@ RSpec.describe Board do
         result = @board_class.insert(DOT, 3)
         @board_class.print_board
         expect(@board_class.win?(result[0], result[1], result[2])).to be(true)
+      end
+    end
+
+    context '2 in a column, a gap, then 2 more' do
+      it 'should return false' do
+        @board_class.board[5,5] =  DOT
+        @board_class.board[4,5] =  DOT
+        @board_class.board[3,5] =  CIRCLE
+        @board_class.board[2,5] =  DOT
+        result = @board_class.insert(DOT, 5)
+        @board_class.print_board
+        expect(@board_class.win?(result[0], result[1], result[2])).to be(false)
       end
     end
   end
