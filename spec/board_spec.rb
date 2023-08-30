@@ -229,5 +229,15 @@ RSpec.describe Board do
         expect(@board_class.win?(result[0], result[1], result[2])).to be(false)
       end
     end
+
+    context 'only 3 in diagonal' do
+      it 'should return false' do
+        @board_class.board[3,1] =  CIRCLE
+        @board_class.board[4,2] =  CIRCLE
+        result = @board_class.insert(CIRCLE, 3)
+        @board_class.print_board
+        expect(@board_class.win?(result[0], result[1], result[2])).to be(false)
+      end
+    end
   end
 end
