@@ -131,6 +131,17 @@ RSpec.describe Board do
       end
     end
 
+    context '4 at the end of the row' do
+      it 'should return true' do
+        @board_class.board[5,6] =  DOT
+        @board_class.board[5,5] =  DOT
+        @board_class.board[5,4] =  DOT
+        result = @board_class.insert(DOT, 3)
+        @board_class.print_board
+        expect(@board_class.win?(result[0], result[1], result[2])).to be(true)
+      end
+    end
+
     context 'four in a column' do
       it 'should return true' do
         @board_class.board[5,3] =  DOT
