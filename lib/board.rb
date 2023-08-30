@@ -15,6 +15,15 @@ class Board
     [0,3] => [[0,3], [1,4], [2,5], [3,6]]
   ]
 
+  UP_DIAGONALS = Hash[
+    [3,0] => [[3,0], [2,1], [1,2], [0,3]],
+    [4,0] => [[4,0], [3,1], [2,2], [1,3], [0,4]],
+    [5,0] => [[5,0], [4,1], [3,2], [2,3], [1,4], [0,5]],
+    [5,1] => [[5,1], [4,2], [3,3], [2,4], [1,5], [0,6]],
+    [5,2] => [[5,2], [4,3], [3,4], [2,5], [1,6]],
+    [5,3] => [[5,3], [4,4], [3,5], [2,6]]
+  ]
+
   def initialize(board = Matrix.build(NUM_ROWS, NUM_COLUMNS) {" "})
     @board = board
   end
@@ -71,8 +80,14 @@ class Board
   end
 
   def diagonal_win?(game_symbol, row_num, column_num)
+    return true if diagonal_check(DOWN_DIAGONALS, game_symbol, row_num, column_num)
+    return true if diagonal_check(UP_DIAGONALS, game_symbol, row_num, column_num)
+    false
+  end
+
+  def diagonal_check(diag_direction, game_symbol, row_num, column_num)
     result = false
-    DOWN_DIAGONALS.each do |first_xy, diagonal|
+    diag_direction.each do |first_xy, diagonal|
       if diagonal.include?([row_num, column_num])
         diagonal.map! {|slot| slot = @board[slot[0], slot[1]]}
         result = four_discs?(diagonal, game_symbol) 
