@@ -18,6 +18,9 @@ class Board
     print top_line 
     print_rows
     print bottom_line
+
+    print "     | 0 | 1 | 2 | 3 | 4 | 5 | 6 |\n"
+    print bottom_line
   end
 
   def print_rows
