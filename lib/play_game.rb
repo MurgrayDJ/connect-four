@@ -10,13 +10,17 @@ class PlayGame
 
   def initialize(board=Board.new)
     @board = board
-    @player1 = Player.new(get_names(1), DOT)
-    @player2 = Player.new(get_names(2), CIRCLE)
   end
 
   def run_game
     puts "============ CONNECT FOUR ============"
     puts "Welcome Players! Please enter your names."
+    create_players
+  end
+
+  def create_players
+    @player1 = Player.new(get_names(1), DOT)
+    @player2 = Player.new(get_names(2), CIRCLE)
   end
 
   def get_names(player_num)
@@ -60,3 +64,4 @@ class PlayGame
 end
 
 # new_game = PlayGame.new
+# new_game.run_game
