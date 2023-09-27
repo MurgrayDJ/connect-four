@@ -14,8 +14,19 @@ class PlayGame
 
   def run_game
     puts "============ CONNECT FOUR ============"
+    show_rules
     puts "Welcome Players! Please enter your names."
     create_players
+  end
+
+  def show_rules
+    puts "\nHow to play: "
+    puts " #{DOT} When it's your turn, choose the column you'd like your disk to"
+    puts "   drop into."
+    puts " #{CIRCLE} The first person to get four sequentially in a row, column, or"
+    puts "   diagonal wins!"
+    puts " #{DOT} Type 'exit' at any time to leave without saving."
+    puts " #{CIRCLE} Type 'help' at any time to repeat this message.\n\n"
   end
 
   def create_players
@@ -63,5 +74,5 @@ class PlayGame
   end
 end
 
-# new_game = PlayGame.new
-# new_game.run_game
+ new_game = PlayGame.new
+ new_game.run_game
