@@ -13,19 +13,38 @@ class PlayGame
   end
 
   def run_game
-    puts "============ CONNECT FOUR ============"
-    show_rules
+    print_title
+    print_rules
     puts "Welcome Players! Please enter your names."
     create_players
   end
 
-  def show_rules
+  def print_title
+    title = ''
+    title = add_title_circles(title)
+    title << " CONNECT FOUR "
+    title = add_title_circles(title)
+    puts title
+  end
+
+  def add_title_circles (title)
+    (0..8).each do |num|
+      if num.even?
+        title << "#{CIRCLE} "
+      else
+        title << "#{DOT} "
+      end
+    end
+    title
+  end
+
+  def print_rules
     puts "\nHow to play: "
     puts " #{DOT} When it's your turn, choose the column you'd like your disk to"
     puts "   drop into."
     puts " #{CIRCLE} The first person to get four sequentially in a row, column, or"
     puts "   diagonal wins!"
-    puts " #{DOT} Type 'exit' at any time to leave without saving."
+    puts " #{DOT} Type 'exit' to leave at any time."
     puts " #{CIRCLE} Type 'help' at any time to repeat this message.\n\n"
   end
 
@@ -64,7 +83,7 @@ class PlayGame
           puts "Thank you for playing!"
           exit!
         elsif response == "help"
-          show_rules
+          print_rules
           break
         end
       end
