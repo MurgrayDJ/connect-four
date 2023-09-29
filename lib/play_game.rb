@@ -19,20 +19,41 @@ class PlayGame
     create_players
   end
 
+  # def play_game
+  #   round_count = 0
+  #   round_data = ''
+  #   while !@board.full?
+  #     round_count++;
+  #     if round_count.odd?
+  #       round_data = play_round(player1)
+  #       if @board.win?(*round_data)
+  #         after_game("#{player1.name} wins! :D")
+  #       end
+  #     else
+  #       round_data = play_round(player2)
+  #       if @board.win?(*round_data)
+  #         after_game("#{player2.name} wins! :D")
+  #       end
+  #     end
+  #   end
+  #   after_game("Looks like a tie! :)")
+  # end
+
   def play_round(curr_player)
     @board.print_board
     puts "#{curr_player.game_symbol} #{curr_player.name} it's your turn!"
     prompt = "Please pick a column (0-6): "
     choice = get_valid_data(prompt, nil, ('0'..'6').to_a).to_i
-    insert_data = @board.insert(curr_player.game_symbol, choice)
+    round_data = @board.insert(curr_player.game_symbol, choice)
     while insert_data.nil? do
       print "Column full! "
       prompt = "Please pick a valid column (0-6): "
       choice = get_valid_data(prompt, nil, ('0'..'6').to_a).to_i
-      insert_data = @board.insert(curr_player.game_symbol, choice)
+      round_data = @board.insert(curr_player.game_symbol, choice)
     end
     puts
     @board.print_board
+    round_data
   end
 
   def print_title
