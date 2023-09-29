@@ -66,5 +66,22 @@ RSpec.describe PlayGame do
         expect(@game.board.board[5,6]).to eq(DOT)
       end
     end
+
+    context 'player2 tries to insert into full column' do
+      it 'should insert after they choose another column' do
+        player2 = double('Player')
+        allow(player2).to receive(:name) {'Gene'}
+        allow(player2).to receive(:game_symbol) {CIRCLE}
+        @game.board.board[5,6] = DOT
+        @game.board.board[4,6] = DOT
+        @game.board.board[3,6] = CIRCLE
+        @game.board.board[2,6] = CIRCLE
+        @game.board.board[1,6] = CIRCLE
+        @game.board.board[0,6] = DOT
+        allow(@game).to receive(:gets).and_return('6','6','3')
+        @game.play_round(player2)
+        expect(@game.board.board[5,3]).to eq(CIRCLE)
+      end
+    end
   end
 end

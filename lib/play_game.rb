@@ -24,7 +24,13 @@ class PlayGame
     puts "#{curr_player.game_symbol} #{curr_player.name} it's your turn!"
     prompt = "Please pick a column (0-6): "
     choice = get_valid_data(prompt, nil, ('0'..'6').to_a).to_i
-    @board.insert(curr_player.game_symbol, choice)
+    insert_data = @board.insert(curr_player.game_symbol, choice)
+    while insert_data.nil? do
+      print "Column full! "
+      prompt = "Please pick another column (0-6): "
+      choice = get_valid_data(prompt, nil, ('0'..'6').to_a).to_i
+      insert_data = @board.insert(curr_player.game_symbol, choice)
+    end
     puts
     @board.print_board
   end
