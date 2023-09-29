@@ -1,1 +1,21 @@
-Player 1 name: Confirm name Bob? (Y/N): Player 2 name: Confirm name Mumu? (Y/N): Player 2 name: Confirm name Linda? (Y/N): Player 1 name: Confirm name Bob? (Y/N): Confirm name Bob? (Y/N): Confirm name Bob? (Y/N): Confirm name Bob? (Y/N): 
+Player 1 name: Confirm name Bob? (Y/N): Player 2 name: Confirm name Mumu? (Y/N): Player 2 name: Confirm name Linda? (Y/N): Player 1 name: Confirm name Bob? (Y/N): Confirm name Bob? (Y/N): Confirm name Bob? (Y/N): Confirm name Bob? (Y/N):       ___________________________
+    0|   |   |   |   |   |   |   | 
+    1|   |   |   |   |   |   |   | 
+    2|   |   |   |   |   |   |   | 
+    3|   |   |   |   |   |   |   | 
+    4|   |   |   |   |   |   |   | 
+    5|   |   |   |   |   |   |   | 
+      ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅
+     | 0 | 1 | 2 | 3 | 4 | 5 | 6 |
+      ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅
+● Bob it's your turn!
+Please pick a column (0-6):       ___________________________
+    0|   |   |   |   |   |   |   | 
+    1|   |   |   |   |   |   |   | 
+    2|   |   |   |   |   |   |   | 
+    3|   |   |   |   |   |   |   | 
+    4|   |   |   |   |   |   |   | 
+    5|   |   |   |   |   | ● |   | 
+      ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅
+     | 0 | 1 | 2 | 3 | 4 | 5 | 6 |
+      ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅

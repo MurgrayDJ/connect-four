@@ -3,6 +3,8 @@ require 'matrix'
 
 RSpec.describe PlayGame do
   before { @game = described_class.new }
+  DOT = "\u25CF"
+  CIRCLE = "\u25CB"
 
   describe '#get_names' do
     context 'player1 enters name then confirms it' do
@@ -24,6 +26,20 @@ RSpec.describe PlayGame do
         allow(@game).to receive(:gets).and_return(
           "Bob\n", "kdyfj\n", "2836%(^*\n", "banana34\n", "Y\n")
         expect(@game.get_names(1)).to eq("Bob")
+      end
+    end
+  end
+
+  describe '#play_round' do
+    context 'player1 chooses column 5' do
+      it 'should have a disk added to column 5' do
+        player1 = double('Player')
+        allow(player1).to receive(:name) {'Bob'}
+        allow(player1).to receive(:game_symbol) {DOT}
+        allow(@game).to receive(:gets).and_return('5')
+
+        @game.play_round(player1)
+        expect(@game.board.board[5,5]).to eq(DOT)
       end
     end
   end

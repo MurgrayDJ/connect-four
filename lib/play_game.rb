@@ -19,6 +19,15 @@ class PlayGame
     create_players
   end
 
+  def play_round(curr_player)
+    @board.print_board
+    puts "#{curr_player.game_symbol} #{curr_player.name} it's your turn!"
+    prompt = "Please pick a column (0-6): "
+    choice = get_valid_data(prompt, nil, ('0'..'6').to_a).to_i
+    @board.insert(curr_player.game_symbol, choice)
+    @board.print_board
+  end
+
   def print_title
     title = ''
     title = add_title_circles(title)
@@ -93,5 +102,5 @@ class PlayGame
   end
 end
 
- new_game = PlayGame.new
- new_game.run_game
+#  new_game = PlayGame.new
+#  new_game.run_game
