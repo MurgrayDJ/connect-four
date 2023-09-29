@@ -75,7 +75,7 @@ Please pick a column (0-6): Please pick a column (0-6): Please pick a column (0-
      | 0 | 1 | 2 | 3 | 4 | 5 | 6 |
       ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅
 ○ Gene it's your turn!
-Please pick a column (0-6): Column full! Please pick another column (0-6): Column full! Please pick another column (0-6): 
+Please pick a column (0-6): Column full! Please pick a valid column (0-6): Column full! Please pick a valid column (0-6): 
       ___________________________
     0|   |   |   |   |   |   | ● | 
     1|   |   |   |   |   |   | ○ | 
@@ -97,7 +97,7 @@ Please pick a column (0-6): Column full! Please pick another column (0-6): Colum
      | 0 | 1 | 2 | 3 | 4 | 5 | 6 |
       ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅
 ● Louise it's your turn!
-Please pick a column (0-6): Column full! Please pick another column (0-6): Please pick another column (0-6): Please pick another column (0-6): 
+Please pick a column (0-6): Column full! Please pick a valid column (0-6): Please pick a valid column (0-6): Please pick a valid column (0-6): Column full! Please pick a valid column (0-6): 
       ___________________________
     0|   |   |   |   | ● |   |   | 
     1|   |   |   |   | ○ |   |   | 

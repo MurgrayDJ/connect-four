@@ -27,7 +27,7 @@ class PlayGame
     insert_data = @board.insert(curr_player.game_symbol, choice)
     while insert_data.nil? do
       print "Column full! "
-      prompt = "Please pick another column (0-6): "
+      prompt = "Please pick a valid column (0-6): "
       choice = get_valid_data(prompt, nil, ('0'..'6').to_a).to_i
       insert_data = @board.insert(curr_player.game_symbol, choice)
     end

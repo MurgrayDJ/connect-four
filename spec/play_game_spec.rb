@@ -95,7 +95,7 @@ RSpec.describe PlayGame do
         @game.board.board[2,4] = DOT
         @game.board.board[1,4] = CIRCLE
         @game.board.board[0,4] = DOT
-        allow(@game).to receive(:gets).and_return('4','n','#%$', '0')
+        allow(@game).to receive(:gets).and_return('4','n','#%$','4', '0')
         @game.play_round(player1)
         expect(@game.board.board[5,0]).to eq(DOT)
       end
