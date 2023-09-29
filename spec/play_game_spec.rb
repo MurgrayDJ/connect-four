@@ -42,5 +42,17 @@ RSpec.describe PlayGame do
         expect(@game.board.board[5,5]).to eq(DOT)
       end
     end
+
+    context 'player2 inserts into column 3 on top of other disc' do
+      it 'should have 2 disks in column 3' do
+        player2 = double('Player')
+        allow(player2).to receive(:name) {'Murgray'}
+        allow(player2).to receive(:game_symbol) {CIRCLE}
+        @game.board.board[5,3] = CIRCLE
+        allow(@game).to receive(:gets).and_return('3')
+        @game.play_round(player2)
+        expect(@game.board.board[4,3]).to eq(CIRCLE)
+      end
+    end
   end
 end

@@ -25,6 +25,7 @@ class PlayGame
     prompt = "Please pick a column (0-6): "
     choice = get_valid_data(prompt, nil, ('0'..'6').to_a).to_i
     @board.insert(curr_player.game_symbol, choice)
+    puts
     @board.print_board
   end
 
