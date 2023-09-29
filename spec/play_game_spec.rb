@@ -54,5 +54,17 @@ RSpec.describe PlayGame do
         expect(@game.board.board[4,3]).to eq(CIRCLE)
       end
     end
+
+    context 'player1 enters several wrong column responses' do
+      it 'should only insert after proper column choice' do
+        player1 = double('Player')
+        allow(player1).to receive(:name) {'Linda'}
+        allow(player1).to receive(:game_symbol) {DOT}
+        allow(@game).to receive(:gets).and_return(
+          'No', 'Yellow', '#$@#', '-3', '400', '6')
+        @game.play_round(player1)
+        expect(@game.board.board[5,6]).to eq(DOT)
+      end
+    end
   end
 end
