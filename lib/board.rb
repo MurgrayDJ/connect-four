@@ -88,12 +88,31 @@ class Board
   def diagonal_check(diag_direction, game_symbol, row_num, column_num)
     result = false
     diag_direction.each do |first_xy, diagonal|
+      xy_list = []
+      diagonal.each{|xy| xy_list << xy.dup}
       if diagonal.include?([row_num, column_num])
         diagonal.map! {|slot| slot = @board[slot[0], slot[1]]}
         result = four_discs?(diagonal, game_symbol) 
+        if result
+          change_discs(xy_list, diagonal)
+          print_board
+        end
       end
     end
     result
+  end
+
+  def change_discs(xy_list, disc_list)
+    disc_list.each_with_index do |disc, index|
+      disc_group = [disc_list[index], disc_list[index + 1], disc_list[index + 2], disc_list[index+ 3]]
+      if disc_group.uniq.length == 1
+        xy_group = [xy_list[index], xy_list[index+1], xy_list[index+2], xy_list[index+3]]
+        xy_group.each do |xy|
+          puts xy
+          @board[xy[0], xy[1]] = "\u2713"
+        end
+      end
+    end
   end
 
   def four_discs?(xy_list, game_symbol)
