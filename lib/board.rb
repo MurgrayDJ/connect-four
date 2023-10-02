@@ -6,6 +6,7 @@ class Board
   NUM_COLUMNS = 7
   DOT = "\u25CF"
   CIRCLE = "\u25CB"
+  CHECKMARK = "\u2713"
   DOWN_DIAGONALS = Hash[
     [2,0] => [[2,0], [3,1], [4,2], [5,3]],
     [1,0] => [[1,0], [2,1], [3,2], [4,3], [5,4]],
@@ -109,7 +110,7 @@ class Board
         xy_group = [xy_list[index], xy_list[index+1], xy_list[index+2], xy_list[index+3]]
         xy_group.each do |xy|
           puts xy
-          @board[xy[0], xy[1]] = "\u2713"
+          @board[xy[0], xy[1]] = CHECKMARK
         end
       end
     end
