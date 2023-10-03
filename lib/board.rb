@@ -64,20 +64,47 @@ class Board
   end 
 
   def win?(game_symbol, row_num, column_num)
-    return true if row_win?(game_symbol, row_num)
-    return true if column_win?(game_symbol, column_num)
+    return true if row_win?(game_symbol, row_num, column_num)
+    return true if column_win?(game_symbol, row_num, column_num)
     return true if diagonal_win?(game_symbol, row_num, column_num)
     false
   end
 
-  def row_win?(game_symbol, row_num)
+  def row_win?(game_symbol, row_num, column_num)
     row = @board.row(row_num)
-    four_discs?(row, game_symbol)
+    result = four_discs?(row, game_symbol)
+    if result
+      add_row_col_checkmarks(row, row_num, nil)
+      print_board
+    end
+    result
   end
 
-  def column_win?(game_symbol, column_num)
+  def column_win?(game_symbol, row_num, column_num)
     column = @board.column(column_num)
-    four_discs?(column, game_symbol)
+    result = four_discs?(column, game_symbol)
+    if result
+      add_row_col_checkmarks(column, nil, column_num)
+      print_board
+    end
+    result
+  end
+
+  def add_row_col_checkmarks(disc_list, row_num, column_num)
+    disc_list.each_with_index do |slot, index|
+      disc_group = [disc_list[index], disc_list[index + 1], disc_list[index + 2], disc_list[index+ 3]]
+      if disc_group.uniq.length == 1
+        if row_num.nil?
+          (index..index+3).each do |idx|
+            @board[idx, column_num] = CHECKMARK
+          end
+        elsif column_num.nil?
+          (index..index+3).each do |idx|
+            @board[row_num, idx] = CHECKMARK
+          end
+        end
+      end
+    end
   end
 
   def diagonal_win?(game_symbol, row_num, column_num)
@@ -95,7 +122,7 @@ class Board
         diagonal.map! {|slot| slot = @board[slot[0], slot[1]]}
         result = four_discs?(diagonal, game_symbol) 
         if result
-          change_discs(xy_list, diagonal)
+          add_diag_checkmarks(xy_list, diagonal)
           print_board
         end
       end
@@ -103,7 +130,7 @@ class Board
     result
   end
 
-  def change_discs(xy_list, disc_list)
+  def add_diag_checkmarks(xy_list, disc_list)
     disc_list.each_with_index do |disc, index|
       disc_group = [disc_list[index], disc_list[index + 1], disc_list[index + 2], disc_list[index+ 3]]
       if disc_group.uniq.length == 1
