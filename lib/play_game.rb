@@ -44,6 +44,8 @@ class PlayGame
   end
 
   def after_game(win_type)
+    puts "Final Board: "
+    @board.print_board
     if win_type == :tie
       puts "Looks like a tie! :)"
       puts "You can see the final board above."
