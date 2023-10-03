@@ -142,7 +142,6 @@ class Board
   def four_discs?(xy_list, game_symbol)
     counter = 0
     xy_list.each do |slot|
-      p slot
       if slot == game_symbol
         counter += 1
         if counter == 4
