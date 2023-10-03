@@ -30,6 +30,8 @@ RSpec.describe PlayGame do
     end
   end
 
+  
+  
   describe '#play_round' do
     context 'player1 chooses column 5' do
       it 'should have a disk added to column 5' do
@@ -101,4 +103,44 @@ RSpec.describe PlayGame do
       end
     end
   end
+
+  
+  
+  describe '#after_game' do
+    context 'Win type is a tie' do
+      it 'should print "Looks like a tie"' do
+        expect do
+          @game.after_game(:tie)
+        end.to output(a_string_including("Looks like a tie!")).to_stdout
+      end
+    end
+
+    context 'Win type is a player' do
+      it 'should print "{player.name} has won"' do
+        player2 = double('Player')
+        allow(player2).to receive(:name) {'Jason'}
+        expect do
+          @game.after_game(player2)
+        end.to output(a_string_including("#{player2.name} has won!")).to_stdout
+      end
+    end
+  end
+
+  # describe '#play_game' do
+  #   context 'player1 column win' do
+  #     it 'should replace their win discs with checkmarks' do
+  #       player1 = double('Player')
+  #       allow(player1).to receive(:name) {'Tina'}
+  #       allow(player1).to receive(:game_symbol) {CIRCLE}
+  #       @game.board.board[5,2] = DOT
+  #       @game.board.board[4,2] = DOT
+  #       @game.board.board[3,2] = CIRCLE
+  #       @game.board.board[2,2] = CIRCLE
+  #       @game.board.board[1,2] = CIRCLE
+  #       allow(@game).to receive(:gets).and_return('2')
+  #       @game.play_round(player1)
+  #       expect(@game.board.board[5,3]).to eq(CIRCLE)
+  #     end
+  #   end
+  # end
 end
