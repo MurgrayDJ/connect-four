@@ -8,7 +8,7 @@ class PlayGame
   DOT = "\u25CF"
   CIRCLE = "\u25CB"
 
-  def initialize(board=Board.new)
+  def initialize(board = Board.new)
     @board = board
   end
 
@@ -24,7 +24,7 @@ class PlayGame
     round_count = 0
     round_data = ''
     while !@board.full?
-      round_count++
+      round_count += 1
       if round_count.odd?
         if win_found?(player1) then return end
       else
