@@ -19,25 +19,39 @@ class PlayGame
     create_players
   end
 
-  # def play_game
-  #   round_count = 0
-  #   round_data = ''
-  #   while !@board.full?
-  #     round_count++;
-  #     if round_count.odd?
-  #       round_data = play_round(player1)
-  #       if @board.win?(*round_data)
-  #         after_game("#{player1.name} wins! :D")
-  #       end
-  #     else
-  #       round_data = play_round(player2)
-  #       if @board.win?(*round_data)
-  #         after_game("#{player2.name} wins! :D")
-  #       end
-  #     end
-  #   end
-  #   after_game("Looks like a tie! :)")
-  # end
+  def play_game
+    round_count = 0
+    round_data = ''
+    while !@board.full?
+      round_count++
+      if round_count.odd?
+        if win_found?(player1) then return end
+      else
+        if win_found?(player2) then return end
+      end
+    end
+    after_game(:tie)
+  end
+
+  def win_found?(player)
+    round_data = play_round(player)
+    if @board.win?(*round_data)
+      after_game(player)
+      return true
+    end
+    false
+  end
+
+  def after_game(win_type)
+    if win_type == :tie
+      puts "Looks like a tie! :)"
+      puts "You can see the final board above."
+    else
+      puts "#{win_type.name} has won!"
+      puts "You can see the final board above."
+      puts "The winning 4 discs have been changed to checkmarks"
+    end
+  end
 
   def play_round(curr_player)
     @board.print_board
@@ -45,7 +59,7 @@ class PlayGame
     prompt = "Please pick a column (0-6): "
     choice = get_valid_data(prompt, nil, ('0'..'6').to_a).to_i
     round_data = @board.insert(curr_player.game_symbol, choice)
-    while insert_data.nil? do
+    while round_data.nil? do
       print "Column full! "
       prompt = "Please pick a valid column (0-6): "
       choice = get_valid_data(prompt, nil, ('0'..'6').to_a).to_i
