@@ -117,10 +117,11 @@ class Board
       xy_list = []
       diagonal.each{|xy| xy_list << xy.dup}
       if diagonal.include?([row_num, column_num])
-        diagonal.map! {|slot| slot = @board[slot[0], slot[1]]}
-        result = four_discs?(diagonal, game_symbol) 
+        disc_list =[]
+        diagonal.map {|slot| disc_list << @board[slot[0], slot[1]]}
+        result = four_discs?(disc_list, game_symbol) 
         if result
-          add_diag_checkmarks(xy_list, diagonal)
+          add_diag_checkmarks(xy_list, disc_list)
         end
       end
     end
