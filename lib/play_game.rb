@@ -69,7 +69,6 @@ class PlayGame
       round_data = @board.insert(curr_player.game_symbol, choice)
     end
     puts
-    @board.print_board
     round_data
   end
 
