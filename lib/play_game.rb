@@ -132,10 +132,10 @@ class PlayGame
       valid_responses.each do |valid_response|
         if response == valid_response
           return response
-        elsif response == "exit"
+        elsif response == "EXIT"
           puts "Thank you for playing!"
           exit!
-        elsif response == "help"
+        elsif response == "HELP"
           print_rules
           break
         end
