@@ -30,8 +30,9 @@ RSpec.describe PlayGame do
     end
   end
 
-  
-  
+
+
+
   describe '#play_round' do
     context 'player1 chooses column 5' do
       it 'should have a disk added to column 5' do
@@ -107,7 +108,7 @@ RSpec.describe PlayGame do
   
   
   describe '#after_game' do
-    context 'Win type is a tie' do
+    context 'win type is a tie' do
       it 'should print "Looks like a tie"' do
         expect do
           @game.after_game(:tie)
@@ -115,7 +116,7 @@ RSpec.describe PlayGame do
       end
     end
 
-    context 'Win type is a player' do
+    context 'win type is a player' do
       it 'should print "{player.name} has won"' do
         player2 = double('Player')
         allow(player2).to receive(:name) {'Jason'}
@@ -126,21 +127,22 @@ RSpec.describe PlayGame do
     end
   end
 
-  # describe '#play_game' do
-  #   context 'player1 column win' do
-  #     it 'should replace their win discs with checkmarks' do
-  #       player1 = double('Player')
-  #       allow(player1).to receive(:name) {'Tina'}
-  #       allow(player1).to receive(:game_symbol) {CIRCLE}
-  #       @game.board.board[5,2] = DOT
-  #       @game.board.board[4,2] = DOT
-  #       @game.board.board[3,2] = CIRCLE
-  #       @game.board.board[2,2] = CIRCLE
-  #       @game.board.board[1,2] = CIRCLE
-  #       allow(@game).to receive(:gets).and_return('2')
-  #       @game.play_round(player1)
-  #       expect(@game.board.board[5,3]).to eq(CIRCLE)
-  #     end
-  #   end
-  # end
+  
+  
+  describe '#play_game' do
+    context 'a player wins' do
+      it 'should return nothing (nil)' do
+        allow(@game).to receive(:win_found?).and_return(true)
+        expect(@game.play_game).to be_nil
+      end
+    end
+
+    context 'board is full' do
+      it 'should call after_game method' do
+        allow(@game.board).to receive(:full?).and_return(true)
+        expect(@game).to receive(:after_game).with(:tie)
+        @game.play_game
+      end
+    end
+  end
 end
