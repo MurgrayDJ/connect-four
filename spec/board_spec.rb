@@ -117,6 +117,7 @@ RSpec.describe Board do
         result = @board_class.insert(DOT, 3)
         @board_class.print_board
         expect(@board_class.win?(result[0], result[1], result[2])).to be(true)
+        @board_class.print_board
       end
     end
 
@@ -140,6 +141,7 @@ RSpec.describe Board do
         result = @board_class.insert(DOT, 3)
         @board_class.print_board
         expect(@board_class.win?(result[0], result[1], result[2])).to be(true)
+        @board_class.print_board
       end
     end
 
@@ -152,6 +154,7 @@ RSpec.describe Board do
         result = @board_class.insert(DOT, 3)
         @board_class.print_board
         expect(@board_class.win?(result[0], result[1], result[2])).to be(true)
+        @board_class.print_board
       end
     end
 
@@ -177,6 +180,7 @@ RSpec.describe Board do
         result = @board_class.insert(CIRCLE, 6)
         @board_class.print_board
         expect(@board_class.win?(result[0], result[1], result[2])).to be(true)
+        @board_class.print_board
       end
     end
 
@@ -192,6 +196,7 @@ RSpec.describe Board do
         result = @board_class.insert(CIRCLE, 3)
         @board_class.print_board
         expect(@board_class.win?(result[0], result[1], result[2])).to be(true)
+        @board_class.print_board
       end
     end
 
@@ -203,6 +208,7 @@ RSpec.describe Board do
         result = @board_class.insert(CIRCLE, 3)
         @board_class.print_board
         expect(@board_class.win?(result[0], result[1], result[2])).to be(true)
+        @board_class.print_board
       end
     end
 
@@ -215,6 +221,7 @@ RSpec.describe Board do
         result = @board_class.insert(DOT, 6)
         @board_class.print_board
         expect(@board_class.win?(result[0], result[1], result[2])).to be(true)
+        @board_class.print_board
       end
     end
 
@@ -250,6 +257,7 @@ RSpec.describe Board do
         result = @board_class.insert(DOT, 0)
         @board_class.print_board
         expect(@board_class.win?(result[0], result[1], result[2])).to be(true)
+        @board_class.print_board
       end
     end
 
@@ -261,6 +269,7 @@ RSpec.describe Board do
         result = @board_class.insert(CIRCLE, 2)
         @board_class.print_board
         expect(@board_class.win?(result[0], result[1], result[2])).to be(true)
+        @board_class.print_board
       end
     end
 
@@ -274,6 +283,7 @@ RSpec.describe Board do
         result = @board_class.insert(DOT, 1)
         @board_class.print_board
         expect(@board_class.win?(result[0], result[1], result[2])).to be(true)
+        @board_class.print_board
       end
     end
 

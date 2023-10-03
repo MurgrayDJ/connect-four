@@ -75,7 +75,6 @@ class Board
     result = four_discs?(row, game_symbol)
     if result
       add_row_col_checkmarks(row, row_num, nil)
-      print_board
     end
     result
   end
@@ -85,7 +84,6 @@ class Board
     result = four_discs?(column, game_symbol)
     if result
       add_row_col_checkmarks(column, nil, column_num)
-      print_board
     end
     result
   end
@@ -123,7 +121,6 @@ class Board
         result = four_discs?(diagonal, game_symbol) 
         if result
           add_diag_checkmarks(xy_list, diagonal)
-          print_board
         end
       end
     end
@@ -136,7 +133,6 @@ class Board
       if disc_group.uniq.length == 1
         xy_group = [xy_list[index], xy_list[index+1], xy_list[index+2], xy_list[index+3]]
         xy_group.each do |xy|
-          puts xy
           @board[xy[0], xy[1]] = CHECKMARK
         end
       end
