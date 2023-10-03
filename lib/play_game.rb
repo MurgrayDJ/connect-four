@@ -17,6 +17,7 @@ class PlayGame
     print_rules
     puts "Welcome Players! Please enter your names."
     create_players
+    play_game
   end
 
   def play_game
@@ -144,5 +145,5 @@ class PlayGame
   end
 end
 
-#  new_game = PlayGame.new
-#  new_game.run_game
+new_game = PlayGame.new
+new_game.run_game
