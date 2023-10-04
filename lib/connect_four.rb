@@ -1,7 +1,7 @@
 require_relative 'board.rb'
 require_relative 'player.rb'
 
-class PlayGame
+class ConnectFour
   attr_reader :board
   attr_reader :player1
   attr_reader :player2
@@ -146,5 +146,5 @@ class PlayGame
   end
 end
 
-new_game = PlayGame.new
-new_game.run_game
+# new_game = ConnectFour.new
+# new_game.run_game

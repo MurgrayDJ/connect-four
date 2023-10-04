@@ -1,7 +1,7 @@
-require_relative '../lib/play_game.rb'
+require_relative '../lib/connect_four.rb'
 require 'matrix'
 
-RSpec.describe PlayGame do
+RSpec.describe ConnectFour do
   before { @game = described_class.new }
   DOT = "\u25CF"
   CIRCLE = "\u25CB"
